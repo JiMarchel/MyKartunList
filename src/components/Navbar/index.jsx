@@ -9,9 +9,10 @@ import {
   NavbarMenuToggle,
   Link,
 } from "@nextui-org/react";
-import InputSearch, { SearchIcon } from "../InputSearch";
+import InputSearch from "./Components/search";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import NavModal from "./Components/modal";
 
 const NavbarComponent = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,6 +47,10 @@ const NavbarComponent = () => {
       name: "Recommend Manga",
       path: "/recommendations-manga",
     },
+    {
+      name: "Top Characters",
+      path: "/top-characters",
+    },
   ];
 
   return (
@@ -55,7 +60,7 @@ const NavbarComponent = () => {
       onMenuOpenChange={setIsMenuOpen}
       className=""
     >
-      <NavbarContent className="sm:hidden" justify="start">
+      <NavbarContent className="md:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
@@ -69,9 +74,12 @@ const NavbarComponent = () => {
             MyKartunList
           </Link>
         </NavbarItem>
-        <NavbarContent justify="end" className="items-center">
-          <InputSearch />
-        </NavbarContent>
+      </NavbarContent>
+      <NavbarContent justify="start">
+        <NavModal />
+      </NavbarContent>
+      <NavbarContent justify="center  " className="items-center">
+        <InputSearch />
       </NavbarContent>
       <NavbarMenu>
         {navList.map((item, i) => (

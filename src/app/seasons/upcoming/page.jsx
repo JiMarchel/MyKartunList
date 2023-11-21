@@ -30,7 +30,7 @@ const SeasonsUpcomingPage = () => {
   }, [page]);
 
   return (
-    <>
+    <div className=" xl:mx-36">
       <HeaderMenu title={`Anime Upcoming Season Page ${page}`} />
       <AnimeList api={seasonAnime} link={"anime"} />
       <PaginationComponent
@@ -40,7 +40,7 @@ const SeasonsUpcomingPage = () => {
         title={page}
         onChange={setPage}
       />
-    </>
+    </div>
   );
 };
 

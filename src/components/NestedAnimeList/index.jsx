@@ -10,7 +10,7 @@ import {
       <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 px-4 font-bold">
         {api.map((anime, i) => {
           return (
-            <Card key={anime.i}>
+            <Card key={i}>
               <Link href={`/${link}/${anime.mal_id}`} className="cursor-pointer">
                 <Image
                   src={anime.images.webp.large_image_url}

@@ -19,9 +19,9 @@ const ModalPicture = ({ imageSrc = "", imageTitle = "404 image" }) => {
         <Image
           src={imageSrc}
           alt={imageTitle}
-          width={100}
-          height={50}
-          className="object-cover max-w-[100px]"
+          width={150}
+          height={100}
+          className="object-cover w-auto h-auto"
         />
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
@@ -34,7 +34,7 @@ const ModalPicture = ({ imageSrc = "", imageTitle = "404 image" }) => {
                   alt={imageTitle}
                   width={100}
                   height={50}
-                  className="w-full h-full object-cover mt-7"
+                  className="w-auto h-auto object-cover mt-7"
                 />
               </ModalBody>
               <ModalFooter>

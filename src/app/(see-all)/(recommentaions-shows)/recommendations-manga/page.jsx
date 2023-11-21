@@ -19,10 +19,10 @@ const RecommendationsManga = () => {
   }, []);
 
   return (
-    <>
+    <div className=" xl:mx-36">
       <HeaderMenu title={`Recommendations Manga`} />
       <NestedAnimeList api={recAnime} link={"manga"} />
-    </>
+    </div>
   );
 };
 

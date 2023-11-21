@@ -1,26 +1,25 @@
 "use client";
 
-import AnimeList from "@/components/AnimeList";
 import HeaderMenu from "@/components/util/HeaderMenu";
 import PaginationComponent from "@/components/util/Pagination";
 import { getDataResponse } from "@/components/util/get-anime";
 import { useEffect, useState } from "react";
+import AnimeList from "@/components/AnimeList";
 
 function Page() {
   const [page, setPage] = useState(1);
-  const [topAnime, setTopAnime] = useState([]);
+  const [topCharacters, setTopAnime] = useState([]);
 
-  
   const scrollTop = () => {
     scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-  
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getDataResponse("top/anime", `page=${page}`);
+      const data = await getDataResponse("top/characters", `page=${page}`);
       setTopAnime(data);
     };
     fetchData();
@@ -28,17 +27,17 @@ function Page() {
   }, [page]);
 
   return (
-    <>
-      <HeaderMenu title={`Top Anime Page ${page}`} />
-      <AnimeList api={topAnime} link={"anime"}/>
+    <div className=" xl:mx-36">
+      <HeaderMenu title={`Top Characters Page ${page}`} />
+      <AnimeList api={topCharacters} link={"/character/anime"}/>
       <PaginationComponent
         initialPage={page}
         page={page}
-        total={topAnime.pagination?.last_visible_page}
+        total={topCharacters.pagination?.last_visible_page}
         title={page}
         onChange={setPage}
       />
-    </>
+    </div>
   );
 }
 

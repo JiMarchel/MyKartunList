@@ -1,13 +1,14 @@
 "use client";
+
 import AnimeList from "@/components/AnimeList";
 import HeaderMenu from "@/components/util/HeaderMenu";
 import PaginationComponent from "@/components/util/Pagination";
 import { getDataResponse } from "@/components/util/get-anime";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const SeasonsNowPage = () => {
+function Page() {
   const [page, setPage] = useState(1);
-  const [seasonAnime, setSeasonAnime] = useState([]);
+  const [topAnime, setTopAnime] = useState([]);
 
   const scrollTop = () => {
     scrollTo({
@@ -18,8 +19,8 @@ const SeasonsNowPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const animeSeason = await getDataResponse(`seasons/now`, `page=${page}`);
-      setSeasonAnime(animeSeason);
+      const data = await getDataResponse("top/anime", `page=${page}`);
+      setTopAnime(data);
     };
     fetchData();
     scrollTop();
@@ -27,17 +28,17 @@ const SeasonsNowPage = () => {
 
   return (
     <div className=" xl:mx-36">
-      <HeaderMenu title={`Anime Current Season Page ${page}`} />
-      <AnimeList api={seasonAnime} link={"anime"} />
+      <HeaderMenu title={`Top Anime Page ${page}`} />
+      <AnimeList api={topAnime} link={"anime"} />
       <PaginationComponent
         initialPage={page}
         page={page}
-        total={seasonAnime.pagination?.last_visible_page}
+        total={topAnime.pagination?.last_visible_page}
         title={page}
         onChange={setPage}
       />
     </div>
   );
-};
+}
 
-export default SeasonsNowPage;
+export default Page;

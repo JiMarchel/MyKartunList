@@ -27,7 +27,7 @@ function TopMangaPage() {
   }, [page]);
 
   return (
-    <>
+    <div className=" xl:mx-36">
       <HeaderMenu title={`Top Manga Page ${page}`} />
       <AnimeList api={topManga} link={"manga"} />
       <PaginationComponent
@@ -37,7 +37,7 @@ function TopMangaPage() {
         title={page}
         onChange={setPage}
       />
-    </>
+    </div>
   );
 }
 

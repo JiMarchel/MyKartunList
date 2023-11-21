@@ -1,7 +1,8 @@
 import { Sora } from "next/font/google";
 import "./globals.css";
 import Providers from "./Providers";
-import NavbarComponent from "@/components/Navbar,js";
+import NavbarComponent from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -10,8 +11,11 @@ const sora = Sora({
 });
 
 export const metadata = {
-  title: "My Wibu List",
-  description: "My Wibu List",
+  title: "MyKartunList",
+  description: "MyAnimeList lite, API from jikan.moe",
+  icons: {
+    icon: "/anime.jpg",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -21,6 +25,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <NavbarComponent />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>

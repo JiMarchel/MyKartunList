@@ -37,19 +37,19 @@ const AnimeIdPage = async ({ params: { id } }) => {
   }));
 
   return (
-    <div className="flex flex-col p-3 gap-6 mb-10 text-primary-800">
-      <h2 className="text-xl font-bold bg-gradient-to-r from-primary-300 to-primary-600 bg-clip-text text-transparent">
+    <div className="flex flex-col p-3 gap-6 mb-10 text-primary-800 xl:mx-36">
+      <h2 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary-300 to-primary-600 bg-clip-text text-transparent">
         {data.title}
       </h2>
-      <div className="grid grid-cols-2 gap-5 ">
+      <div className="grid grid-cols-2 xl:grid-cols-3 gap-5 ">
         <Image
           src={data.images.webp.large_image_url}
           alt={data.title}
           width={330}
           height={350}
-          className="max-h-80 object-cover rounded-lg"
+          className="h-auto w-auto object-cover rounded-lg xl:col-span-1"
         />
-        <div className="flex flex-col my-2 text-md text-primary-800 gap-1">
+        <div className="flex flex-col my-2 text-md text-primary-800 gap-1 xl:col-span-2">
           <div>
             <p className="text-medium flex items-center gap-2">
               <FaRegStar />
@@ -84,10 +84,29 @@ const AnimeIdPage = async ({ params: { id } }) => {
               rating={`Rating : ${data.rating}`}
             />
           </div>
+          <div className="hidden sm:block mt-5">
+            <h2 className="text-lg">Background :</h2>
+            {data.background === null ? (
+              <p className="text-xs">Sorry no data found</p>
+            ) : (
+              <p className="text-xs">{data.background}</p>
+            )}
+          </div>
+          <div className="hidden md:block mt-5">
+            <h2 className="text-lg text-primary-800">Synopsis :</h2>
+            <ScrollShadow className="w-full max-h-60 xl:max-h-48">
+              <p
+                className="text-xs text-primary-800"
+                style={{ whiteSpace: "pre-line", textIndent: "1em" }}
+              >
+                {data.synopsis}
+              </p>
+            </ScrollShadow>
+          </div>
         </div>
       </div>
-      <Divider />
-      <ScrollShadow className="w-full max-h-72">
+      <Divider className="md:hidden" />
+      <ScrollShadow className="w-full max-h-72 md:hidden">
         <div>
           <h2 className="text-lg text-primary-800">Synopsis :</h2>
           <p
@@ -98,8 +117,8 @@ const AnimeIdPage = async ({ params: { id } }) => {
           </p>
         </div>
       </ScrollShadow>
-      <Divider />
-      <div>
+      <Divider className="sm:hidden" />
+      <div className="sm:hidden">
         <h2 className="text-lg">Background :</h2>
         {data.background === null ? (
           <p className="text-xs">Sorry no data found</p>
@@ -108,7 +127,7 @@ const AnimeIdPage = async ({ params: { id } }) => {
         )}
       </div>
       <Divider />
-      <div>
+      <div className="md:hidden">
         <h1 className="text-lg">Episodes :</h1>
         <ScrollShadow className={`max-h-80 w-full`}>
           <div className="flex flex-col gap-2">
@@ -130,8 +149,8 @@ const AnimeIdPage = async ({ params: { id } }) => {
           </div>
         </ScrollShadow>
       </div>
-      <Divider />
-      <div>
+      <Divider className="md:hidden" />
+      <div className="md:hidden">
         <h2 className="p-2 text-lg">Characters :</h2>
         <ScrollShadow className="h-[300px]">
           <div className="grid grid-cols-3 gap-1">
@@ -144,7 +163,7 @@ const AnimeIdPage = async ({ params: { id } }) => {
                       alt={character.name}
                       width={100}
                       height={50}
-                      className="object-cover max-w-[100px]"
+                      className="object-cover w-auto h-auto  "
                     />
                   </Link>
                 </CardBody>
@@ -155,6 +174,56 @@ const AnimeIdPage = async ({ params: { id } }) => {
             ))}
           </div>
         </ScrollShadow>
+      </div>
+
+      <div className="hidden grid-cols-2  md:grid lg:gap-5">
+        <div>
+          <h1 className="text-lg">Episodes :</h1>
+          <ScrollShadow className="max-h-96 w-full">
+            <div className="flex flex-col gap-2">
+              {mappedDataEpisode.length > 0 ? (
+                mappedDataEpisode.map((data) => (
+                  <SmallCard
+                    key={data.malId}
+                    episode={data.episode}
+                    title={data.title}
+                    imageAlt={data.title}
+                    imageUrl={data.imageUrl}
+                    link={data.url}
+                    target="_blank"
+                  />
+                ))
+              ) : (
+                <p>Data Episode Not Found</p>
+              )}
+            </div>
+          </ScrollShadow>
+        </div>
+        <div>
+          <h2 className="text-lg">Characters :</h2>
+          <ScrollShadow className="max-h-96 w-full">
+            <div className="grid grid-cols-3 gap-1">
+              {dataCharacters.map((character) => (
+                <Card key={character.mal_id}>
+                  <CardBody>
+                    <Link href={`/character/anime/${character.mal_id}`}>
+                      <Image
+                        src={character.images.jpg.image_url}
+                        alt={character.name}
+                        width={100}
+                        height={50}
+                        className="object-cover w-auto h-auto  "
+                      />
+                    </Link>
+                  </CardBody>
+                  <CardFooter className="text-xs flex items-center justify-start text-primary-800">
+                    {character.name}
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          </ScrollShadow>
+        </div>
       </div>
     </div>
   );

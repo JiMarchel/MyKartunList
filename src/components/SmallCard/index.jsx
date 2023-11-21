@@ -11,7 +11,7 @@ const SmallCard = ({
 }) => {
   return (
     <Card>
-      <CardBody className="grid grid-cols-3">
+      <CardBody className="grid grid-cols-3 gap-5">
         <div className="col-span-1">
           <Link href={link} target={target}>
             <Image
@@ -19,7 +19,7 @@ const SmallCard = ({
               alt={imageAlt}
               width={100}
               height={100}
-              className="max-h-20 object-cover rounded-lg"
+              className="h-auto w-auto object-cover rounded-lg"
             />
           </Link>
         </div>

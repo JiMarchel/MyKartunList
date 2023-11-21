@@ -1,6 +1,11 @@
 const getDataResponse = async (resource, query) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/${resource}?${query}`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/${resource}?${query}`,
+    {
+      next: {
+        revalidate: 3600,
+      },
+    }
   );
   const anime = await response.json();
   return anime;
