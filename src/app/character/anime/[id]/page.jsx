@@ -75,7 +75,7 @@ const CharacterAnimePage = async ({ params: { id } }) => {
             </div>
           </ScrollShadow>
         </div>
-        <Divider className="md:hidden" />
+        <Divider className="md:hidden my-7" />
         <div>
           <h2 className="text-xl mb-3">Animeography :</h2>
           <ScrollShadow className={`max-h-80 w-full`}>
@@ -114,7 +114,7 @@ const CharacterAnimePage = async ({ params: { id } }) => {
             </div>
           </ScrollShadow>
         </div>
-        <Divider className="md:hidden" />
+        <Divider className="md:hidden my-7" />
         <div>
           <h2 className="text-xl mb-3">Pictures :</h2>
           <ScrollShadow className={`max-h-80 w-full`}>

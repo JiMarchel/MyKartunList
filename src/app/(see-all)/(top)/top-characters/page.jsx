@@ -29,7 +29,7 @@ function Page() {
   return (
     <div className=" xl:mx-36">
       <HeaderMenu title={`Top Characters Page ${page}`} />
-      <AnimeList api={topCharacters} link={"/character/anime"}/>
+      <AnimeList api={topCharacters} link={"character/anime"}/>
       <PaginationComponent
         initialPage={page}
         page={page}

@@ -8,14 +8,14 @@ const Page = async ({ params }) => {
   const decodedKeyword = decodeURI(keyword);
   const searchAnime = await getDataResponse("anime", `q=${decodedKeyword}`);
   return (
-    <div>
-      <Header title={`Pencarian untuk : ${decodedKeyword}`} />
+    <div className=" xl:mx-36">
+      <Header title={`Search for : ${decodedKeyword}`} />
       {searchAnime.data.length === 0 && (
         <h1 className="text-center text-sm md:text-4xl font-bold mt-32 text-primary-200 underline">
           Keyword Tidak Ditemukan
         </h1>
       )}
-      <AnimeList api={searchAnime} />
+      <AnimeList api={searchAnime} link={"anime"}/>
     </div>
   );
 };
